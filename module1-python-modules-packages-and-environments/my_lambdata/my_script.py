@@ -1,8 +1,9 @@
-import pandas as pd
 import sklearn
 import sklearn.model_selection
 from sklearn.model_selection import train_test_split
 from scipy.stats import ttest_ind
+import pandas as pd
+
 
 def start():
     options = {
@@ -28,9 +29,10 @@ if __name__ == '__main__':
     start()
     del start
 
+
 def train_split(df):
     '''
     A split function that splits a dataframe into a 70/30 train test split
     '''
-    train, test = train_test_split(df, train_size=.70, random_state=42)
+    train, test = train_test_split(df, train_size = .70, random_state = 42)
     return train, test
