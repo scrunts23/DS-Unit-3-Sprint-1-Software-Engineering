@@ -3,6 +3,7 @@ import sklearn.model_selection
 from sklearn.model_selection import train_test_split
 from scipy.stats import ttest_ind
 import pandas as pd
+import numpy as np
 
 
 def start():
@@ -30,9 +31,11 @@ if __name__ == '__main__':
     del start
 
 
-def train_split(df):
-    '''
-    A split function that splits a dataframe into a 70/30 train test split
-    '''
-    train, test = train_test_split(df, train_size = .70, random_state = 42)
-    return train, test
+def split_train_val_test(df,val_ratio,test_ratio):
+    shuffled_indcies=np.random.permutation(len(df))
+    val_set_size= int(len(df)*val_ratio)
+    val_indcies=shuffled_indcies[:val_set_size]
+    test_set_size= int(len(df)*test_ratio)
+    test_indcies=shuffled_indcies[val_set_size:test_set_size+val_set_size]
+    train_indices=shuffled_indcies[test_set_size:]
+    return df.iloc[train_indices],df.iloc[val_indcies],df.iloc[test_indcies]
