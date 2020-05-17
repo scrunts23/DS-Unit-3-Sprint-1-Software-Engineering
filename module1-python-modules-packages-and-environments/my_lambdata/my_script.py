@@ -1,7 +1,3 @@
-import sklearn
-import sklearn.model_selection
-from sklearn.model_selection import train_test_split
-from scipy.stats import ttest_ind
 import pandas as pd
 import numpy as np
 
