@@ -262,9 +262,28 @@ career here, you'll have to answer the following:
 - What, in your opinion, is an important part of code reviews? That is, what is
   something you pay attention to when you review code, and that you appreciate
   when others do the same for your code?
+
+  -To me the most important part of code reviewing is to look at the end goal 
+   of a project. Is this project going to meet the goals set aside at the beginning?
+   of the project is something that I try to focus on when I have done code reviews
+   and appreciate when other people look at my own code. When you code review you could 
+   also bounce ideas of each other how to refactor you code or even when you get in a 
+   code block they could help you. Everyone has many strong points and they 
+   could be better at what you are trying to accomplish.
+ 
+
+
 - We have an awful lot of computers here, and it gets pretty confusing with
   slightly different things running on all of them. How could containers help us
   improve this situation?
+
+  - Containers help because they effectively allow you to reproduce machine
+    states even with different OS, VM's & etc. We might have drastically 
+    different hardware, but if we were both initializing containers from the 
+    same image, we can be assured that if we get different results on each 
+    of our containers, the problem has to do with the code we are running and 
+    not differences in machine states.
+
 
 Answer both of these questions (baseline ~5 sentences) here in text.
 

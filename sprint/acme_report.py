@@ -12,7 +12,8 @@ def generate_products(n=30):
             NOUNS[random.randrange(0, len(NOUNS))],
             price=random.randrange(5, 101),
             weight=random.randrange(5, 101),
-            flammability=random.uniform(0, 2.5)) for _ in range(n)]
+            flammability=random.uniform(0, 2.5)) for _ in range(n)
+    ]
 
 
 def inventory_report(products):
@@ -35,3 +36,4 @@ def inventory_report(products):
 
 if __name__ == '__main__':
     inventory_report(generate_products())
+    

@@ -1,5 +1,4 @@
 import unittest
-# from itertools import product as ip
 from acme import Product
 from acme_report import generate_products, ADJECTIVES, NOUNS
 
@@ -14,6 +13,7 @@ def ip(a, b):
 
 class AcmeProductTests(unittest.TestCase):
     """Making sure Acme products are the tops!"""
+
     def test_default_product_price(self):
         """Test default product price being 1ADJECTIVES0."""
         prod = Product('Test Product')

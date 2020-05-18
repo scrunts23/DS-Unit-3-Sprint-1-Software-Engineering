@@ -30,3 +30,4 @@ class BoxingGlove(Product):
     def punch(self):
         return "That tickles." if self.weight < 5 else \
             ("Hey that hurt!" if self.weight < 15 else "OUCH!")
+            
