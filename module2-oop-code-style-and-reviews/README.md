@@ -1,75 +1,81 @@
-# Object-Oriented Programming, Code Style and Reviews
+# Python Modules, Packages, and Environments
 
-"Code that works" is good - "code that other people can read" is better.
+Places for your code (and dependencies) to live.
 
 ## Learning Objectives
 
-- create a basic Python class, with a constructor, methods, and fields
-- write stylistic (PEP 8) Python code, and give and receive a basic code review
+- Understand and follow Python namespaces and imports
+- Create a Python package and install dependencies in a dedicated environment
 
 ## Before Lecture
 
-Read the [official Python Class
-tutorial](https://docs.python.org/3/tutorial/classes.html), and try to reproduce
-the examples in your own Python environment.
-
-Read the [PEP 8 style guide](https://pep8.org/), and then look back at code
-you've written in the past. Identify at least three times you did something the
-style guide says you shouldn't, and write the corrected version.
+Install [Anaconda](https://www.anaconda.com/distribution) on your local machine
+if you haven't already, and read the official documentation for
+[Python modules](https://docs.python.org/3.7/tutorial/modules.html).
 
 ## Live Lecture Task
 
-We will first live code a class based on class request/discussion, brainstorming
-what fields and methods make sense. We will then discuss style more broadly.
-
-Style matters - but we're engineers, which means we're a little lazy. Let's set
-up tools to check style automatically, so we fix issues before they hit review.
-
-Then we will discuss what a code review actually is, and if folks are brave they
-can volunteer to have their code reviewed with the class. It's scary, but this
-is a safe time to do it (and good practice for the assignment!).
+We're going to start our own Python package the right way - by making an
+environment with `pipenv`, installing our dependencies, and making some classes.
 
 ## Assignment
 
-First, revisit your code from yesterday - was it stylistic? Run a style check
-(as shown in lecture) and correct any issues you see. Also, refactor your code
-to use at least 1 class - remember, be DRY (Don't Repeat Yourself), not WET
-(Write Every Time)!
+1) Create your own `lambdata-yourusername` package, as shown in lecture
+2) Implement at least 2 of the following "helper" utility functions:
+  - Check a dataframe for nulls, print/report them in a nice "pretty" format
+  - Report a confusion matrix, with labels for easier interpretation
+  - Train/*validate*/test split function for a dataframe
+  - "Generate more data" function, takes dataframes and makes more rows
+  - Contingency table + Chi-squared report function: takes two categorical
+    variables, outputs a contingency table and corresponding Chi-squared test
+  - Split addresses into multiple columns city, state zip -> df['city]
+    df['state'] df['zip'] use regexes to detect format and pull out important
+    pieces
+  - State abbreviation -> Full Name and visa versa. FL -> Florida, etc.
+    (Handle Washington DC and territories like Puerto Rico etc.)
+  - Single function to take a list, turn it into a series and add it to a
+    dataframe as a new column
+  - 1.5*Interquartile range outlier detection/removal function.
+  - Function to set notebook display options.
+  - Function to split dates ("MM/DD/YYYY", etc.) into multiple columns
+  - Your idea here! (You will implement more later in the week as well)
+3) Register for a [test PyPI account](https://test.pypi.org/account/register/)
+4) Publish your package as `lambdata-yourusername` (to avoid conflicts)
+5) Start a Python notebook, and install your package with
+  `!pip install --index-url https://test.pypi.org/simple/ lambdata-yourusername`
+6) `import lambdata_yourusername as lambdata` in your notebook, and try it out!
 
-Then - code review! Pair with another student (PMs will facilitate, especially
-in case of odd numbers), and share your `lambdata` repo with each other. Read
-and review their code, and also check that they have published their package to
-test PyPI and that it can be installed and used.
+We'll step through in lecture - building and publishing a package requires
+`twine`, and is generally done with these commands:
+- `python setup.py sdist bdist_wheel` (build the actual package)
+- `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
 
-The objectives to evaluate are as described in the prior module (`lambdata`
-package with at least 2 helper functions, published on test PyPI). If they meet
-the requirements it is a 2, exceed is a 3, and don't meet is a 1.
+`twine` itself can be installed with `pipenv install -d twine` so it is a
+development dependency.
 
-Considerations to keep in mind while doing a code review:
-- Can you follow the code flow/layout?
-- Can you understand the logic/reasoning for what it is doing?
-- Could you build with (`import` and use) or extend on it (as a developer adding
-  more to the codebase)?
+Many of the utility functions can be implemented with the right clever calls
+to `pandas`, `numpy`, and other libraries - that's fine! Use those as
+dependencies. There's still value in a package that encapsulates more
+complicated libraries and exposes streamlined functionality with a simplified
+API.
 
-For comments and notes, focus on style and design. Find at least *2* things to
-compliment and at least *1* constructive criticism. It's also great to learn
-things from their code, and ask questions if there's something you don't
-understand. Good code isn't clever - it's clear!
-
-To turn in your code review, you should fork the repo you are reviewing, add a
-file named `review.md` with your comments, and open a pull request so your peer
-can receive it. You can optionally try [GitHub code review functionality](
-https://github.com/features/code-review/), or use comments in the PR to discuss
-and iterate.
+Also note - there's a lot more than 2 ideas above. Throughout the week, whenever
+you have finished the daily assignment baseline, you can always come back and
+add more functionality to your `lambdata` (including ideas of your own)!
 
 ## Resources and Stretch Goals
 
-If you have trouble getting a PEP8 tool working in your local environment, you
-can use [PEP8 online](http://pep8online.com/) to check code.
+The [official Python packaging tutorial](https://packaging.python.org/tutorials/packaging-projects/)
+can help you if you get stuck with the assignment. Make sure to use Test PyPI!
+If you get through all the steps, try some of the following stretch goals:
 
-Also, many organizations create their own "flavor" of style guides - for an example,
-read the
-[Google Python Style Guide](https://google.github.io/styleguide/pyguide.html).
+- Check out the source code for [pandas](https://github.com/pandas-dev/pandas),
+  and see if you can make sense of it. Try to find the actual logic behind
+  specific functions you use (e.g. `pd.DataFrame`, `df.replace`, etc.). Reading
+  source code is challenging, especially from large codebases, but it's a skill
+  that will help you debug and fix real issues in professional situations.
 
-And if you get through all the above - make `lambdata` better! Implement 2 more
-helper functions, and/or refactor your code to be more object-oriented.
+- Explore [PyPI](https://pypi.org), the Python Package Index - this is where
+  `pip` (the official base Python package installer, which both Anaconda and
+  `pipenv` build on) gets things from by default. For now stick with Test PyPI
+  for your own publishing, but you can work to make things "real"!
